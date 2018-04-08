@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Join from '@/components/Join'
+import Help from '@/components/Help'
 import AccountTypes from '@/components/AccountTypes'
 import CreditCards from '@/components/CreditCards'
 import OnlineBanking from '@/components/OnlineBanking'
@@ -9,6 +10,7 @@ import Login from '@/components/Login'
 import AccountSummary from '@/components/AccountSummary'
 import AddTransaction from '@/components/AddTransaction'
 import TransactionHistory from '@/components/TransactionHistory'
+import ApplyForAccount from '@/components/ApplyForAccount'
 
 Vue.use(Router)
 
@@ -71,6 +73,14 @@ export default new Router({
       }
     },
     {
+      path: '/Help',
+      name: 'Help',
+      component: Help,
+      meta: {
+        requiresNavbar: true
+      }
+    },
+    {
       path: '/AddTransaction',
       name: 'AddTransaction',
       component: AddTransaction,
@@ -82,6 +92,14 @@ export default new Router({
       path: '/TransactionHistory',
       name: 'TransactionHistory',
       component: TransactionHistory,
+      meta: {
+        requiresNavbar: true
+      }
+    },
+    {
+      path: '/ApplyForAccount',
+      name: 'ApplyForAccount',
+      component: ApplyForAccount,
       meta: {
         requiresNavbar: true
       }

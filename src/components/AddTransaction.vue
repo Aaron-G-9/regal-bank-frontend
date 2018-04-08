@@ -55,6 +55,17 @@
 
 </template>
 <script>
+  export default {
+    name: 'AddTransaction',
+    data: function(){
+      return{
+
+      }
+    },
+    methods: {
+
+    }
+  }
 
 </script>
 <style scoped>

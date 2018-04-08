@@ -3,12 +3,12 @@
     <div class="container is-widescreen">
       <section>
         <h1 class="title">
-          History
+          Apply for a new type of account
         </h1/>
         <h2 class='subtitle'>
-          Please select which account's history you want to view
+          We have many to choose from, and are happy to meet your needs
         </h2>
-        <b-field class="input-div" label="View Account History">
+        <b-field class="input-div" label="Select the account type you'd like">
             <b-select placeholder="Select an account" icon="account" @input="select_account" v-model="selected_account" >
                 <optgroup label="Checking Accounts">
                     <option value="flint">Totally Gold Checking</option>
@@ -40,7 +40,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <b-table class='hero-content' bordered="is_bordered" striped="is_striped" centered :data="checking" :columns="checking_columns"></b-table>
+              Show account information and necessary questions.
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
 </template>
 <script>
   export default {
-    name: 'TransactionHistory',
+    name: 'ApplyForAccount',
     data: function(){
       return{
         is_account_selected: false,

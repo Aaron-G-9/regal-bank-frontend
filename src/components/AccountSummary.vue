@@ -26,8 +26,8 @@
         </div>
         <footer class="card-footer">
           <router-link to="/AddTransaction" class="card-footer-item">Deposit</router-link>
-          <a href="#" class="card-footer-item">Withdraw</a>
-          <a href="#" class="card-footer-item">See History</a>
+          <router-link to="/AddTransaction" href="#" class="card-footer-item">Withdraw</router-link>
+          <router-link to="/TransactionHistory" href="#" class="card-footer-item">See History</router-link>
         </footer>
       </div>
       <div class="card summary-card">
@@ -110,11 +110,22 @@
     },
     created() {
       if (sessionStorage.getItem('regal-bank-token') !== null){
+        this.fetch_accounts()
         this.is_logged_in = true
       }
     },
     methods: {
-
+      fetch_accounts: async function(){
+        //const response = await fetch('http://localhost:8090/api/getAccountSummary', {
+        //  headers: {
+        //      Accept: 'application/json',
+        //      Authorization: sessionStorage.getItem('regal-bank-token'),
+        //      'Content-Type': 'application/x-www-form-urlencoded'
+        //    },
+        //  method: 'POST',
+        //  mode: 'cors'
+        //})
+      }
     }
   }
 </script>

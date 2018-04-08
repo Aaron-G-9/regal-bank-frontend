@@ -30,9 +30,9 @@
         <a class="navbar-item">
           About
         </a>
-        <a class="navbar-item">
+        <router-link class="navbar-item" to="Help">
           Help
-        </a>
+        </router-link>
       </div>
 
       <div class="navbar-end">
@@ -40,9 +40,9 @@
         <router-link class="navbar-item" to="Login">
           Log In
         </router-link>
-        <a class="navbar-item">
+        <router-link to="/Join" class="navbar-item">
           Join Now
-        </a>
+        </router-link>
       </div>
     </div>
   </nav>
