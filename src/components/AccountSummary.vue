@@ -25,7 +25,7 @@
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item">Deposit</a>
+          <router-link to="/AddTransaction" class="card-footer-item">Deposit</router-link>
           <a href="#" class="card-footer-item">Withdraw</a>
           <a href="#" class="card-footer-item">See History</a>
         </footer>

@@ -7,6 +7,8 @@ import CreditCards from '@/components/CreditCards'
 import OnlineBanking from '@/components/OnlineBanking'
 import Login from '@/components/Login'
 import AccountSummary from '@/components/AccountSummary'
+import AddTransaction from '@/components/AddTransaction'
+import TransactionHistory from '@/components/TransactionHistory'
 
 Vue.use(Router)
 
@@ -64,6 +66,22 @@ export default new Router({
       path: '/AccountSummary',
       name: 'AccountSummary',
       component: AccountSummary,
+      meta: {
+        requiresNavbar: true
+      }
+    },
+    {
+      path: '/AddTransaction',
+      name: 'AddTransaction',
+      component: AddTransaction,
+      meta: {
+        requiresNavbar: true
+      }
+    },
+    {
+      path: '/TransactionHistory',
+      name: 'TransactionHistory',
+      component: TransactionHistory,
       meta: {
         requiresNavbar: true
       }

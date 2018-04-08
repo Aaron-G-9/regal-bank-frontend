@@ -12,6 +12,8 @@ import CreditCards from '@/components/CreditCards'
 import OnlineBanking from '@/components/OnlineBanking'
 import Login from '@/components/Login'
 import AccountSummary from '@/components/AccountSummary'
+import AddTransaction from '@/components/AddTransaction'
+import TransactionHistory from '@/components/TransactionHistory'
 
 export default {
   name: 'App',
@@ -21,7 +23,9 @@ export default {
     CreditCards,
     OnlineBanking,
     Login,
-    AccountTypes
+    AccountTypes,
+    AddTransaction,
+    TransactionHistory
   }
 }
 </script>
