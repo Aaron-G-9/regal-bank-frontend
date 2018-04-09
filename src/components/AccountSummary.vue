@@ -65,6 +65,7 @@
     name: 'AccountSummary',
     data: function(){
       return{
+        account_types: [],
         is_striped: true,
         is_bordered: true,
         is_logged_in: false,
@@ -110,6 +111,7 @@
     },
     created() {
       if (sessionStorage.getItem('regal-bank-token') !== null){
+        this.fetch_account_types()
         this.fetch_accounts()
         this.fetch_credit()
         this.is_logged_in = true
@@ -145,6 +147,7 @@
             })
           }
         }
+        console.log(this.credit)
 
       },
 
@@ -158,7 +161,19 @@
           method: 'POST',
           mode: 'cors'
         }).then(response => response.json())
-      }
+      },
+      fetch_account_types: async function(){
+        this.account_types = await fetch('http://localhost:8090/api/getUserAccounts', {
+          headers: {
+              Accept: 'application/json',
+              Authorization: sessionStorage.getItem('regal-bank-token'),
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          method: 'POST',
+          mode: 'cors'
+        }).then(response => response.json())
+
+      },
     }
   }
 </script>
