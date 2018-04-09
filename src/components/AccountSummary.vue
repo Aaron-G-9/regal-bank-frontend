@@ -68,8 +68,8 @@
         is_striped: true,
         is_bordered: true,
         is_logged_in: false,
-        checking: [{name: 'Golden Grizly Checking', available: 504.00, balance: 450.00}, {name: 'Golden Grizly Saving', available: 1504.00, balance: 1000.00}],
-        credit: [{name: 'Foxtrot Credit', amountDue: 15.00, dueDate: '12/06/1996', available: 1500.00, balance: 1420.00}, {name: 'Platinum Plus Loan', amountDue: 15.00, dueDate: '12/06/1996', available: 1504.00, balance: 1000.00}],
+        checking: [],
+        credit: [],
         checking_columns: [
           {
             field: 'name',
@@ -111,20 +111,53 @@
     created() {
       if (sessionStorage.getItem('regal-bank-token') !== null){
         this.fetch_accounts()
+        this.fetch_credit()
         this.is_logged_in = true
       }
     },
     methods: {
       fetch_accounts: async function(){
-        //const response = await fetch('http://localhost:8090/api/getAccountSummary', {
-        //  headers: {
-        //      Accept: 'application/json',
-        //      Authorization: sessionStorage.getItem('regal-bank-token'),
-        //      'Content-Type': 'application/x-www-form-urlencoded'
-        //    },
-        //  method: 'POST',
-        //  mode: 'cors'
-        //})
+        const response = await fetch('http://localhost:8090/api/getAccountSummary', {
+          headers: {
+              Accept: 'application/json',
+              Authorization: sessionStorage.getItem('regal-bank-token'),
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          method: 'POST',
+          mode: 'cors'
+        }).then(response => response.json())
+
+
+        for (let key in response){
+          if (key.toLowerCase().includes('credit')){
+            this.credit.push({
+              name: key,
+              amountDue: 15,
+              dueDate: new Date(),
+              available: 1420,
+              balance: response[key][0].newBalance
+            })
+          }else{
+            this.checking.push({
+              name: key,
+              available: response[key][0].newBalance,
+              balance: response[key][0].newBalance
+            })
+          }
+        }
+
+      },
+
+      fetch_credit: async function(){
+        const response = await fetch('http://localhost:8090/api/getUserCredit', {
+          headers: {
+              Accept: 'application/json',
+              Authorization: sessionStorage.getItem('regal-bank-token'),
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+          method: 'POST',
+          mode: 'cors'
+        }).then(response => response.json())
       }
     }
   }

@@ -12,89 +12,68 @@
         </div>
       </div>
       <transition name="fade">
-        <b-field label="Message" style="max-width: 800px">
-          <b-input maxlength="200" type="textarea"></b-input>
+        <b-field label="Employee">
+          <b-input :disabled="success" v-model="employee" placeholder="Employee's name" maxlength="200"></b-input>
         </b-field>
       </transition>
+      <transition name="fade">
+        <b-field label="Message" style="max-width: 800px">
+          <b-input :disabled="success" maxlength="200" type="textarea" v-model="message"></b-input>
+        </b-field>
+      </transition>
+      <section class="success">
+        <b-message type="is-success" v-if="success">
+          Your message has been received!
+        </b-message>
+      </section>
     </section>
+    <a class="button is-primary" @click="submit" v-if="!success">Submit</a>
     </div>
 </template>
 
 <script>
-export default {
-  name: "CreditCards",
-  data: function() {
-    return {
-      credit_card_data: ["", ""],
-      columns: [
-        {
-          field: "name",
-          label: "Name"
-        },
-        {
-          field: "annualFee",
-          label: "Annual Fee",
-          numeric: true
-        },
-        {
-          field: "introApr",
-          label: "Intro APR",
-          numeric: true
-        },
-        {
-          field: "regularApr",
-          label: "Regular APR"
-        },
-        {
-          field: "rewardRate",
-          label: "Reward Rate"
-        },
-        {
-          field: "rewardBonus",
-          label: "Reward Bonus"
-        },
-        {
-          field: "lateFee",
-          label: "Late Fee"
-        },
-        {
-          field: "creditHistory",
-          label: "Credit History"
+  export default {
+    name: 'MapCard',
+    data: function () {
+      return {
+        message: "",
+        employee: "",
+        success: false
+      }
+    },
+    methods: {
+      submit: async function () {
+        let customer = sessionStorage.getItem('regal-bank-token')
+        if (customer === null){
+          customer = "anonymous"
         }
-      ]
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  methods: {
-    fetchData: async function() {
-      try {
-        const rawData = await fetch(
-          "http://localhost:8090/api/getCreditCards"
-        ).then(response => response.json());
-
-        this.credit_card_data = rawData;
-
-        rawData.map(row => {
-          row.annualFee = `\$${row.annualFee.toFixed(2)}`;
-          row.introApr = `${row.introApr}% for ${row.monthsOfIntro} months`;
-          row.rewardRate = `${(row.rewardRateMin * 10).toFixed(2)}% - ${(
-            row.rewardRateMax * 10
-          ).toFixed(2)}%`;
-          row.regularApr = `${(row.regularAprMin * 10).toFixed(2)}% - ${(
-            row.regularAprMax * 10
-          ).toFixed(2)}%`;
-          row.rewardBonus = `\$${row.rewardBonus.toFixed(2)}`;
-          row.lateFee = `\$${row.lateFee.toFixed(2)}`;
-        });
-      } catch (err) {
-        console.error(err);
+        let data = {
+          message: this.message,
+          employee: this.employee,
+          customer: customer
+        }
+        const formBody = Object.keys(data)
+          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+          .join("&")
+        const response = await fetch('http://localhost:8090/api/complaint', {
+        body: formBody,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: 'POST',
+        "Content-Type": "application/x-www-form-urlencoded",
+        mode: 'cors'
+        })
+        const message = await response.json()
+        if(message.status === 'success') {
+          this.success = true
+        }
       }
     }
   }
-};
 </script>
+
 
 <style scoped>
 .hero-content {
