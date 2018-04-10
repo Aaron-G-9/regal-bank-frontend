@@ -16,6 +16,7 @@ import AddTransaction from '@/components/AddTransaction'
 import TransactionHistory from '@/components/TransactionHistory'
 import ApplyForAccount from '@/components/ApplyForAccount'
 import Help from '@/components/Help'
+import Admin from '@/components/Admin'
 
 export default {
   name: 'App',
@@ -29,7 +30,8 @@ export default {
     AddTransaction,
     TransactionHistory,
     ApplyForAccount,
-    Help
+    Help,
+    Admin
   }
 }
 </script>

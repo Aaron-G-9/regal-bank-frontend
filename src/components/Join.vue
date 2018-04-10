@@ -233,6 +233,11 @@ export default {
         })
         
         if (response !== null && response !== "" && response !== undefined){
+          let isAdmin = false
+          if (this.username === "amgoodfellow" || this.username === "calee"){
+            isAdmin = true
+          }
+          sessionStorage.setItem('regal-bank-admin', isAdmin);
           sessionStorage.setItem('regal-bank-token', response);
           this.first_page = false
           this.second_page = false
