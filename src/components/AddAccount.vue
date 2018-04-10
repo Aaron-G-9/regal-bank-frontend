@@ -15,6 +15,9 @@
               </option>
             </b-select>
             <button style="margin-top:30px" class="button is-primary" @click="addAccount">Add Account</button>
+            <b-message style="margin-top:70px" type="is-success" v-if="success">
+              Account Added!
+            </b-message>
         </b-field>
       </section>
     </div>
@@ -27,7 +30,8 @@ export default {
   data: function() {
     return {
       accountOptions: [],
-      selected_option: ""
+      selected_option: "",
+      success: false
     };
   },
   created() {
@@ -62,7 +66,11 @@ export default {
           },
         method: 'POST',
         mode: 'cors'
-      })
+      }).then(response => response.text())
+
+      if (response == "Success"){
+        this.success = true
+      }
 
 
     }

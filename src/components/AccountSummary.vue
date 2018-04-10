@@ -148,6 +148,14 @@
               available: response[key][0].newBalance,
               balance: response[key][0].newBalance
             })
+          }else if (key.toLowerCase().includes('loan')){
+            this.credit.push({
+              name: key,
+              amountDue: 100,
+              dueDate: new Date('2018-5-2').toLocaleString("en-US"),
+              available: 0,
+              balance: response[key][0].newBalance
+            })
           }else{
             this.checking.push({
               name: key,

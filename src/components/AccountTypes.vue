@@ -14,7 +14,6 @@
     <img id='account-hero-img' src="../assets/tree-girl.jpg">
   </div>
 </section>
-    <b-table :data="data" :columns="columns"></b-table>
 <br/>
 <br/>
 <br/>
