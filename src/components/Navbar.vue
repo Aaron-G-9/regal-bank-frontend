@@ -43,6 +43,9 @@
         <router-link to="/Join" class="navbar-item">
           Join Now
         </router-link>
+        <a onclick="sessionStorage.clear()" class="navbar-item">
+          Sign Out
+        </a>
       </div>
     </div>
   </nav>

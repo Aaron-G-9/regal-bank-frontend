@@ -17,6 +17,7 @@ import TransactionHistory from '@/components/TransactionHistory'
 import ApplyForAccount from '@/components/ApplyForAccount'
 import Help from '@/components/Help'
 import Admin from '@/components/Admin'
+import AddAccount from '@/components/AddAccount'
 
 export default {
   name: 'App',

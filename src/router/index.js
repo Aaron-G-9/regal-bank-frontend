@@ -12,6 +12,7 @@ import AddTransaction from '@/components/AddTransaction'
 import TransactionHistory from '@/components/TransactionHistory'
 import ApplyForAccount from '@/components/ApplyForAccount'
 import Admin from '@/components/Admin'
+import AddAccount from '@/components/AddAccount'
 
 Vue.use(Router)
 
@@ -109,6 +110,14 @@ export default new Router({
       path: '/Admin',
       name: 'Admin',
       component: Admin,
+      meta: {
+        requiresNavbar: true
+      }
+    },
+    {
+      path: '/AddAccount',
+      name: 'AddAccount',
+      component: AddAccount,
       meta: {
         requiresNavbar: true
       }

@@ -14,7 +14,7 @@
       </div>
     </section>
 
-    <div style="background-color: tan; height: 93vh;" v-if="is_logged_in">
+    <div class="big-div-guy" v-if="is_logged_in">
       <div class="card summary-card top-card">
         <header class="card-header card-header-title" style="background-color: #00d1b2; color: white;">
           Checking and Savings Accounts
@@ -40,11 +40,11 @@
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item">Make a Payment</a>
-          <a href="#" class="card-footer-item">Redeem Cashback</a>
-          <a href="#" class="card-footer-item">See History</a>
+          <router-link to="/AddTransaction" class="card-footer-item">Make a Payment</router-link>
+          <router-link to="/TransactionHistory" href="#" class="card-footer-item">See History</router-link>
         </footer>
       </div>
+      <router-link to="/AddAccount" style="margin-top: 30px"class="button is-primary">Add new account</router-link>
     </div>
   </div>
 </template>
@@ -57,6 +57,15 @@
 
 .top-card{
   border-top: gray;
+}
+
+.big-div-guy{
+  background-color: tan;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 
@@ -135,8 +144,8 @@
             this.credit.push({
               name: key,
               amountDue: 15,
-              dueDate: new Date(),
-              available: 1420,
+              dueDate: new Date('2018-5-2').toLocaleDateString("en-US"),
+              available: response[key][0].newBalance,
               balance: response[key][0].newBalance
             })
           }else{

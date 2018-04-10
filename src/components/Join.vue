@@ -124,9 +124,9 @@
           </b-field>
           <b-field label="Credit Status" expanded>
             <b-select v-model="credit_status" expanded>
-              <option value="male">Excellent</option>
-              <option value="female">Good</option>
-              <option value="non-binary">Bad</option>
+              <option value="excellent">Excellent</option>
+              <option value="good">Good</option>
+              <option value="bad">Bad</option>
             </b-select>
           </b-field>
         </b-field>
@@ -208,7 +208,7 @@ export default {
           email: this.email,
           gender: this.gender,
           phone: this.phone,
-          creditStatus: this.credit_status,
+          creditHistory: this.credit_status,
           username: this.username,
           password: this.password,
           securityQuestion: this.security_question,
@@ -237,6 +237,7 @@ export default {
           if (this.username === "amgoodfellow" || this.username === "calee"){
             isAdmin = true
           }
+          console.log(response)
           sessionStorage.setItem('regal-bank-admin', isAdmin);
           sessionStorage.setItem('regal-bank-token', response);
           this.first_page = false
